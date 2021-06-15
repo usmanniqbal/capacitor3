@@ -1,5 +1,6 @@
 package com.capacitor.three;
 
+import android.os.Bundle;
 import com.getcapacitor.BridgeActivity;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
