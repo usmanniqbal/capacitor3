@@ -1,0 +1,6 @@
+{
+  "appId": "com.capacitor.three",
+  "appName": "capacitor3",
+  "webDir": "build",
+  "bundledWebRuntime": false
+}
