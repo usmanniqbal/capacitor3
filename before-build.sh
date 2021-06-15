@@ -1,3 +1,3 @@
 npm i
 yarn build
-npx cap sync
+npx cap sync android
