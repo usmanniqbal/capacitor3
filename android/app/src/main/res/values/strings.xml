@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">capacitor3</string>
-    <string name="title_activity_main">capacitor3</string>
+    <string name="app_name">C3 dev</string>
+    <string name="title_activity_main">C3 dev</string>
     <string name="package_name">com.capacitor.three</string>
     <string name="custom_url_scheme">com.capacitor.three</string>
 </resources>
