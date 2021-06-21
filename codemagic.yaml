@@ -52,12 +52,12 @@ workflows:
 
 
   capacitor-ios-workflow:
-    name: Capacitor iOS Workflow
+    name: Ionic Capacitor iOS Workflow
     max_build_duration: 120
     instance_type: mac_mini
     environment:
       vars:
-        # Capacitor Xcode worskspace and scheme
+        # Ionic Capacitor Xcode worskspace and scheme
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
         # Manual Code Signing
@@ -75,18 +75,17 @@ workflows:
       node: latest
       xcode: latest
       cocoapods: default
-    # triggering:
-    #   events:
-    #     - push
-    #   branch_patterns:
-    #     - pattern: develop
-    #       include: true
-    #       source: true
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: develop
+          include: true
+          source: true
     scripts:
-      - name: Install npm dependencies for project
+      - name: Install npm dependencies for Ionic project
         script: |
                     npm install
-                    yarn build
       - name: Cocoapods installation
         script: |
                     cd ios/App && pod install
@@ -94,9 +93,9 @@ workflows:
         script: |
           # npx cap copy # <- use this is you don't need to update native dependencies
           npx cap sync # <- update native dependencies and copy web assets to native project          
-      # - name: Set up keychain to be used for code signing using Codemagic CLI 'keychain' command
-      #   script: |
-      #               keychain initialize
+      - name: Set up keychain to be used for code signing using Codemagic CLI 'keychain' command
+        script: |
+                    keychain initialize
       # - name: Set up Provisioning profiles from environment variables (Use with manual code signing)
       #   script: |
       #     PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
@@ -108,9 +107,9 @@ workflows:
       #   script: |
       #     # app-store-connect fetch-signing-files "com.nevercode.ncionicapp" --type IOS_APP_STORE --create
       #     app-store-connect fetch-signing-files $(xcode-project detect-bundle-id) --type IOS_APP_STORE --create          
-      # - name: Add certificates to keychain
-      #   script: |
-      #               keychain add-certificates
+      - name: Add certificates to keychain
+        script: |
+                    keychain add-certificates
       - name: Increment build number
         script: |
           #!/bin/sh
@@ -129,14 +128,14 @@ workflows:
         - /tmp/xcodebuild_logs/*.log
         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
-    # publishing:
-    #   app_store_connect:
-    #     apple_id: yourAppleId@example.com # <- put your Apple Id here
-    #     password: Encrypted(...) # <-- Put your App Specific Password. For more information visit: https://support.apple.com/en-us/HT204397
-    #   email:
-    #     recipients:
-    #       - user_one@example.com
-    #       - user_two@example.com
-    #     notify:
-    #       success: false     # To not receive a notification when a build succeeds
-    #       failure: false     # To not receive a notification when a build fails
+    publishing:
+      app_store_connect:
+        apple_id: yourAppleId@example.com # <- put your Apple Id here
+        password: Encrypted(...) # <-- Put your App Specific Password. For more information visit: https://support.apple.com/en-us/HT204397
+      email:
+        recipients:
+          - user_one@example.com
+          - user_two@example.com
+        notify:
+          success: false     # To not receive a notification when a build succeeds
+          failure: false     # To not receive a notification when a build fails
