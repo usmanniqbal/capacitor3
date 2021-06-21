@@ -1,4 +1,4 @@
-package com.capacitor.three;
+package com.eventmobi.multieventapp.meaid33a6a34ec8ff421794d79dd84302ad75;
 
 import android.os.Bundle;
 import com.getcapacitor.BridgeActivity;
