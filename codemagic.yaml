@@ -4,12 +4,12 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini
     environment:
-      vars:
-        # Android Keystore environment variables
-        FCI_KEYSTORE: Encrypted('android/upload-keystore.jks') # <-- Put your encrypted keystore file here
-        FCI_KEYSTORE_PASSWORD: Encrypted('@123Abcd') # <-- Put your encrypted keystore password here
-        FCI_KEY_PASSWORD: Encrypted('@123Abcd') # <-- Put your encrypted keystore alias password here
-        FCI_KEY_ALIAS: Encrypted('upload') # <-- Put your encrypted keystore alias username here
+      # vars:
+      #   # Android Keystore environment variables
+      #   FCI_KEYSTORE: Encrypted('android/upload-keystore.jks') # <-- Put your encrypted keystore file here
+      #   FCI_KEYSTORE_PASSWORD: Encrypted('@123Abcd') # <-- Put your encrypted keystore password here
+      #   FCI_KEY_PASSWORD: Encrypted('@123Abcd') # <-- Put your encrypted keystore alias password here
+      #   FCI_KEY_ALIAS: Encrypted('upload') # <-- Put your encrypted keystore alias username here
       node: latest
     scripts:
       - name: Install npm dependencies for Ionic Capacitor project
