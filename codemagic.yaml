@@ -75,13 +75,13 @@ workflows:
       node: latest
       xcode: latest
       cocoapods: default
-    triggering:
-      events:
-        - push
-      branch_patterns:
-        - pattern: develop
-          include: true
-          source: true
+    # triggering:
+    #   events:
+    #     - push
+    #   branch_patterns:
+    #     - pattern: develop
+    #       include: true
+    #       source: true
     scripts:
       - name: Install npm dependencies for Ionic project
         script: |
@@ -128,14 +128,14 @@ workflows:
         - /tmp/xcodebuild_logs/*.log
         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
-    publishing:
-      app_store_connect:
-        apple_id: yourAppleId@example.com # <- put your Apple Id here
-        password: Encrypted(...) # <-- Put your App Specific Password. For more information visit: https://support.apple.com/en-us/HT204397
-      email:
-        recipients:
-          - user_one@example.com
-          - user_two@example.com
-        notify:
-          success: false     # To not receive a notification when a build succeeds
-          failure: false     # To not receive a notification when a build fails
+    # publishing:
+    #   app_store_connect:
+    #     apple_id: yourAppleId@example.com # <- put your Apple Id here
+    #     password: Encrypted(...) # <-- Put your App Specific Password. For more information visit: https://support.apple.com/en-us/HT204397
+    #   email:
+    #     recipients:
+    #       - user_one@example.com
+    #       - user_two@example.com
+    #     notify:
+    #       success: false     # To not receive a notification when a build succeeds
+    #       failure: false     # To not receive a notification when a build fails
