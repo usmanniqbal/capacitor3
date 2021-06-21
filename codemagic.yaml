@@ -52,12 +52,12 @@ workflows:
 
 
   capacitor-ios-workflow:
-    name: Ionic Capacitor iOS Workflow
+    name: Capacitor iOS Workflow
     max_build_duration: 120
     instance_type: mac_mini
     environment:
       vars:
-        # Ionic Capacitor Xcode worskspace and scheme
+        # Capacitor Xcode worskspace and scheme
         XCODE_WORKSPACE: "ios/App/App.xcworkspace"
         XCODE_SCHEME: "App"
         # Manual Code Signing
@@ -83,7 +83,7 @@ workflows:
     #       include: true
     #       source: true
     scripts:
-      - name: Install npm dependencies for Ionic project
+      - name: Install npm dependencies for project
         script: |
                     npm install
                     yarn build
