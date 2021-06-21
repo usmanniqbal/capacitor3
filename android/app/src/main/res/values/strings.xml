@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">C3 dev</string>
     <string name="title_activity_main">C3 dev</string>
-    <string name="package_name">com.eventmobi.multieventapp.meaid33a6a34ec8ff421794d79dd84302ad75</string>
-    <string name="custom_url_scheme">com.eventmobi.multieventapp.meaid33a6a34ec8ff421794d79dd84302ad75</string>
+    <string name="package_name">com.eventmobi.multieventapp.meaidfa33d52eb4374fdb891ab905fa3a72e7</string>
+    <string name="custom_url_scheme">com.eventmobi.multieventapp.meaidfa33d52eb4374fdb891ab905fa3a72e7</string>
 </resources>
