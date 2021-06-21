@@ -1,5 +1,50 @@
 workflows:
-  hello-world:
-    name: Hello world worklfow
+  ionic-capacitor-android-workflow:
+    name: Ionic Capacitor Android Workflow
+    max_build_duration: 120
+    instance_type: mac_mini
+    environment:
+      vars:
+        # Android Keystore environment variables
+        FCI_KEYSTORE: Encrypted('android/upload-keystore.jks') # <-- Put your encrypted keystore file here
+        FCI_KEYSTORE_PASSWORD: Encrypted('@123Abcd') # <-- Put your encrypted keystore password here
+        FCI_KEY_PASSWORD: Encrypted('@123Abcd') # <-- Put your encrypted keystore alias password here
+        FCI_KEY_ALIAS: Encrypted('upload') # <-- Put your encrypted keystore alias username here
+      node: latest
     scripts:
-        - echo "Hello world!"
+      - name: Install npm dependencies for Ionic Capacitor project
+        script: |
+                    npm install
+      - name: Set Android SDK location
+        script: |
+                    echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/android/local.properties"
+      - name: Set up keystore
+        script: |
+          echo $FCI_KEYSTORE | base64 --decode > /tmp/keystore.keystore
+          cat >> "$FCI_BUILD_DIR/android/key.properties" <<EOF
+          storePassword=$FCI_KEYSTORE_PASSWORD
+          keyPassword=$FCI_KEY_PASSWORD
+          keyAlias=$FCI_KEY_ALIAS
+          storeFile=/tmp/keystore.keystore
+          EOF          
+      - name: Update dependencies and copy web assets to native project
+        script: |
+          # npx cap copy # <- use this is you don't need to update native dependencies
+          npx cap sync # <- update native dependencies and copy web assets to native project          
+      - name: Build Android release
+        script: |
+          cd android
+          ./gradlew assembleRelease          
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+#    publishing:
+#      google_play:
+#        credentials: Encrypted(...) # <- Put your encrypted JSON key file for Google Play service account
+#        track: internal
+#      email:
+#        recipients:
+#          - user_one@example.com
+#          - user_two@example.com
+#        notify:
+#          success: true     # To not receive a notification when a build succeeds
+#          failure: false     # To not receive a notification when a build fails
